@@ -5,7 +5,7 @@
   "description": "Management my everyday's task lists.",  
   "browser_action": {  
     "default_icon": "app/src/img/icon.png" ,
-    "default_title": "My MyFirstChromePlugins",
+    "default_title": "测试用的文本",
     "default_popup": "app/html/index.html"
   }  
 }
