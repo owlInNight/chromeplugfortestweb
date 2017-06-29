@@ -19,10 +19,13 @@
  */
 	if ( typeof module === "object" && typeof module.exports === "object" ) {
 /**
+
  * 这里的注释 我看不懂 
  *  根据 google 翻译 和自己猜测的一些东西 来看 , 大致的意思是 , 
  *  	有 window 类的 就创建一个 传入window 类的环境 , 如果 没有window 类 的 就更改
  *  为导入模块的形式  ,
+
+	追踪了一下代码 , 发现  一般的项目 , 静态的html 页面不会进入到这段代码里面来
  */
 		// For CommonJS and CommonJS-like environments where a proper `window`
 		// is present, execute the factory and get jQuery.
@@ -92,7 +95,7 @@ var ObjectFunctionString = fnToString.call( Object );
 var support = {};
 
 
-
+// 1:DOMEval
 	function DOMEval( code, doc ) {
 		doc = doc || document;
 
@@ -118,6 +121,7 @@ var
 		// The jQuery object is actually just the init constructor 'enhanced'
 		// Need init if jQuery is called (just allow error to be thrown if not
 		// included)
+	//>>>>>>>>===== 1  初始化
 		return new jQuery.fn.init( selector, context );
 	},
 
@@ -133,7 +137,9 @@ var
 	fcamelCase = function( all, letter ) {
 		return letter.toUpperCase();
 	};
-
+/**
+ * 实例方法
+ */
 jQuery.fn = jQuery.prototype = {
 
 	// The current version of jQuery being used
@@ -143,13 +149,14 @@ jQuery.fn = jQuery.prototype = {
 
 	// The default length of a jQuery object is 0
 	length: 0,
-
+//转换数组  
 	toArray: function() {
 		return slice.call( this );
 	},
 
 	// Get the Nth element in the matched element set OR
 	// Get the whole matched element set as a clean array
+	//get 方法 , 有数字就是获取 当前的第几个 , 如果没有 参数 ,  就是获取所有的  放置在一数组中 
 	get: function( num ) {
 
 		// Return all the elements in a clean array
@@ -214,28 +221,35 @@ jQuery.fn = jQuery.prototype = {
 	sort: arr.sort,
 	splice: arr.splice
 };
-
+//jQuery.fn = jQuery.prototype
+//jquery 的extend 方法定义
 jQuery.extend = jQuery.fn.extend = function() {
-	var options, name, src, copy, copyIsArray, clone,
+	var options, 
+		name, 
+		src, 
+		copy, 
+		copyIsArray, 
+		clone,
 		target = arguments[ 0 ] || {},
 		i = 1,
 		length = arguments.length,
 		deep = false;
-
+		// 1:, 如果 第一参数 是boolean 型的 target 取第一个参数 
 	// Handle a deep copy situation
 	if ( typeof target === "boolean" ) {
+		
 		deep = target;
 
 		// Skip the boolean and the target
 		target = arguments[ i ] || {};
 		i++;
 	}
-
+	// 不是对象  , 并且 不是 function 
 	// Handle case when target is a string or something (possible in deep copy)
 	if ( typeof target !== "object" && !jQuery.isFunction( target ) ) {
 		target = {};
 	}
-
+// i 和 参数的长度相等 target 就等于这个jquery 对象???
 	// Extend jQuery itself if only one argument is passed
 	if ( i === length ) {
 		target = this;
@@ -251,7 +265,7 @@ jQuery.extend = jQuery.fn.extend = function() {
 			for ( name in options ) {
 				src = target[ name ];
 				copy = options[ name ];
-
+				// 如果 目标属性和  option 的属性相等的话,就继续
 				// Prevent never-ending loop
 				if ( target === copy ) {
 					continue;
@@ -285,27 +299,27 @@ jQuery.extend = jQuery.fn.extend = function() {
 };
 
 jQuery.extend( {
-
+	// 在页面上的每个 jquery 实例都是唯一的 , 这里使用的是, jQuery 字符 +版本号 + 随机数 替换掉所有的非数字项
 	// Unique for each copy of jQuery on the page
 	expando: "jQuery" + ( version + Math.random() ).replace( /\D/g, "" ),
-
+	// ???
 	// Assume jQuery is ready without the ready module
 	isReady: true,
-
+//	错误
 	error: function( msg ) {
 		throw new Error( msg );
 	},
 
 	noop: function() {},
-
+	// 是否是function
 	isFunction: function( obj ) {
 		return jQuery.type( obj ) === "function";
 	},
-
+// 是否是 window
 	isWindow: function( obj ) {
 		return obj != null && obj === obj.window;
 	},
-
+// 是否是数字
 	isNumeric: function( obj ) {
 
 		// As of jQuery 3.0, isNumeric is limited to
@@ -320,7 +334,7 @@ jQuery.extend( {
 			// subtraction forces infinities to NaN
 			!isNaN( obj - parseFloat( obj ) );
 	},
-
+	//
 	isPlainObject: function( obj ) {
 		var proto, Ctor;
 
@@ -3088,7 +3102,7 @@ var rootjQuery,
 	// Strict HTML recognition (#11290: must start with <)
 	// Shortcut simple #id case for speed
 	rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/,
-
+	//>>>>>>>>===== 2
 	init = jQuery.fn.init = function( selector, context, root ) {
 		var match, elem;
 
@@ -3187,7 +3201,7 @@ var rootjQuery,
 				// Execute immediately if ready is not present
 				selector( jQuery );
 		}
-
+		//>>>>>>>>===== 3
 		return jQuery.makeArray( selector, this );
 	};
 
