@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+
+.mainWindow table {
+	font-family: verdana, arial, sans-serif;
+	font-size: 11px;
+	color: #333333;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+}
+
+.mainWindow table th {
+	background: #b5cfd2;
+	border-width: 1px;
+	padding: 5px;
+	border-style: solid;
+	border-color: #999999;
+}
+
+.mainWindow table td {
+	background: #dcddc0;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #999999;
+}
+
+.activeBox table td {
+	background: #ffffff;
+}
