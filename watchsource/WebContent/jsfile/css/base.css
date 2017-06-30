@@ -25,6 +25,6 @@
 	border-color: #999999;
 }
 
-.activeBox table td {
+table tr td.activeBox {
 	background: #ffffff;
 }
