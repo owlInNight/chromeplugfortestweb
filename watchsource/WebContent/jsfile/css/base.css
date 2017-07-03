@@ -1,5 +1,17 @@
 @CHARSET "UTF-8";
 
+body {
+	font-size: 9px;
+	margin: 1px 1px 1px 1px;
+}
+
+button {
+	width: 27px;
+	height: 16px;
+	font-size: 1px;
+	padding: 0px;
+}
+
 .mainWindow table {
 	font-family: verdana, arial, sans-serif;
 	font-size: 11px;
@@ -17,14 +29,19 @@
 	border-color: #999999;
 }
 
-.mainWindow table td {
+.mainWindow table td, .left fieldset table td {
 	background: #dcddc0;
 	border-width: 1px;
-	padding: 8px;
+	padding: 5px;
 	border-style: solid;
 	border-color: #999999;
 }
 
 table tr td.activeBox {
 	background: #ffffff;
+}
+
+.left {
+	background: gray;
+	float: left;
 }
